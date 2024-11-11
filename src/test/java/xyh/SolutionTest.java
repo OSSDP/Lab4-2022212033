@@ -32,5 +32,31 @@ public class SolutionTest {
         List<String> actual = solution.findRepeatedDnaSequences(s);
         assertEquals(expected, actual);
     }
+    @Test
+    public void testFindRepeatedDnaSequences() {
+        Solution solution = new Solution();
+
+        // 测试用例1
+        String s1 = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT";
+        List<String> expected1 = Arrays.asList("AAAAACCCCC", "CCCCCAAAAA");
+        assertEquals(expected1, solution.findRepeatedDnaSequences(s1));
+
+        // 测试用例2
+        String s2 = "AAAAAAAAAAAAA";
+        List<String> expected2 = Arrays.asList("AAAAAAAAAA");
+        assertEquals(expected2, solution.findRepeatedDnaSequences(s2));
+
+        // 测试用例3：没有重复序列
+        String s3 = "ACGTACGTACGT";
+        List<String> expected3 = Arrays.asList();
+        assertEquals(expected3, solution.findRepeatedDnaSequences(s3));
+
+        // 测试用例4：序列长度小于10
+        String s4 = "ACGT";
+        List<String> expected4 = Arrays.asList();
+        assertEquals(expected4, solution.findRepeatedDnaSequences(s4));
+
+      
+    }
 
 }
