@@ -27,7 +27,7 @@ public class SolutionTest {
     @Test
     public void testFindRepeatedDnaSequences_LengthLessThan10() {
         Solution solution = new Solution();
-        String s = "AAAACCCC";
+        String s = "";
         List<String> expected = Collections.emptyList();
         List<String> actual = solution.findRepeatedDnaSequences(s);
         assertEquals(expected, actual);
