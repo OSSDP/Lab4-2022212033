@@ -17,18 +17,18 @@ public class SolutionTest {
     public void testFindRepeatedDnaSequences_WithRepeats() {
         Solution solution = new Solution();
         String s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT";
-        List<String> expected = Arrays.asList("AAAAACCCCC", "CCCCCAAAAA");
+        // 修改预期结果，使其与实际结果不匹配
+        List<String> expected = Arrays.asList("XXXXX", "YYYYY"); // 错误的预期结果
         List<String> actual = solution.findRepeatedDnaSequences(s);
         assertEquals(expected, actual);
     }
 
-    // 测试目的：验证findRepeatedDnaSequences方法在字符串长度小于10时返回空列表
-    // 预期结果：返回空列表
     @Test
     public void testFindRepeatedDnaSequences_LengthLessThan10() {
         Solution solution = new Solution();
         String s = "AAAACCCC";
-        List<String> expected = Collections.emptyList();
+        // 修改预期结果，使其与实际结果不匹配
+        List<String> expected = Arrays.asList("AAAACCCC"); // 错误的预期结果，预期应返回空列表
         List<String> actual = solution.findRepeatedDnaSequences(s);
         assertEquals(expected, actual);
     }
