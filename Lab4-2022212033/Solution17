@@ -1,0 +1,34 @@
+name: tests
+on: push
+jobs:
+  run_tests:
+    runs-on: ubuntu-latest
+    steps:
+      # 更清晰地命名为"检出代码仓库"
+      - name: Checkout the Repository Code
+        uses: actions/checkout@v3 # 更新到最新版本v3
+
+      # 更清晰地命名为"设置JDK 17开发环境"
+      - name: Set up JDK 17 Development Environment
+        uses: actions/setup-java@v3 # 更新到最新版本v3
+        with:
+          java-version: 17
+          # 可添加更多配置项，如设置JVM参数等，这里假设暂不需要额外配置
+          # jvm-parameters: '-Xmx2g'
+
+      # 优化缓存键生成方式并更清晰地命名为"缓存Maven依赖包"
+      - name: Cache Maven Dependencies
+        uses: actions/cache@v3 # 更新到最新版本v3
+        with:
+          path: ~/.m2
+          # 在缓存键中添加分支名称和项目名称作为额外区分信息，假设项目名为my-project
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}-${{ github.repository }}-${{ github.ref_name }}
+          restore-keys:
+            - ${{ runner.os }}-m2-${{ github.repository }}-${{ github.ref_name }}
+            - ${{ runner.os }}-m2-${{ github.repository }}
+            - ${{ runner.os }}-m2
+
+      # 更清晰地命名为"使用Maven运行项目测试"并优化Maven命令执行细节
+      - name: Run Project Tests with Maven
+        run: mvn -B test --file pom.xml -Dsurefire.reportFormat=xml -Dmaven.test.failure.ignore=false
+      
